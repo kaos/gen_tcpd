@@ -388,7 +388,7 @@ listen(Mod, Port, Options) ->
 do_accept({ssl, Socket}, SSLTimeout) ->
 	case ssl:transport_accept(Socket) of
 		{ok, Client} ->
-			case ssl:ssl_accept(Client, SSLTimeout) of
+			case ssl:handshake(Client, SSLTimeout) of
 				ok ->
 					{ok, {ssl, Client}};
 				{error, Reason} ->
